@@ -96,7 +96,7 @@ Widget build(BuildContext context) {
                           style: const TextStyle(color: Colors.white), // Texte en blanc
                           decoration: const InputDecoration(
                             labelText: 'Login',
-                            labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 20),
+                            labelStyle: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 17),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Color(0xFF8B4513)),
                             ),
