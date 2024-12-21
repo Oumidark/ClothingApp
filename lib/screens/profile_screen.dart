@@ -127,7 +127,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         backgroundColor: const Color(0xFFEFDCCC),
         elevation: 0,
-        
+          title: const Text(
+          'Profile',
+          style: TextStyle(color: Color(0xFF8B4513)),
+        ),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: const Icon(Icons.exit_to_app, color: Color(0xFF8B4513)),
@@ -156,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         initialValue: user.login,
                         readOnly: true,
                         decoration: InputDecoration(
-                          labelText: 'Email',
+                          labelText: 'login',
                           labelStyle:
                               const TextStyle(color: Color(0xFF8B4513)),
                           border: inputBorder,
@@ -182,7 +186,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       TextFormField(
                         initialValue: formatBirthday(user.birthday),
                         decoration: InputDecoration(
-                          labelText: 'Birthday',
+                          labelText: 'Anniversaire',
                           labelStyle:
                               const TextStyle(color: Color(0xFF8B4513)),
                           border: inputBorder,
@@ -210,7 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         initialValue: user.postalCode,
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
-                          labelText: 'Postal Code',
+                          labelText: 'Code postal',
                           labelStyle:
                               const TextStyle(color: Color(0xFF8B4513)),
                           border: inputBorder,
@@ -223,7 +227,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       TextFormField(
                         initialValue: user.city,
                         decoration: InputDecoration(
-                          labelText: 'City',
+                          labelText: 'Ville',
                           labelStyle:
                               const TextStyle(color: Color(0xFF8B4513)),
                           border: inputBorder,
@@ -233,7 +237,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         onChanged: (value) => user.city = value,
                       ),
                       const SizedBox(height: 20),
-                      ElevatedButton(
+                       Center(
+                        child: ElevatedButton(
                         onPressed: _saveProfile,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF8B4513),
@@ -246,6 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         child: const Text('Valider'),
                       ),
+                       ),
                     ],
                   ),
                 ),

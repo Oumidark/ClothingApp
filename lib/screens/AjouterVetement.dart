@@ -27,8 +27,8 @@ class _AjouterVetementState extends State<AjouterVetement> {
   Interpreter? _interpreter;
   String _classificationResult = "";
 
-  // Define class names corresponding to the model's output
-  final List<String> _categories = ["chemise","pants","robes","shorts","t-shirt"];
+  // Liste des catégories
+  final List<String> _categories = ["chemise", "pants", "robes", "shorts", "t-shirt"];
 
   @override
   void initState() {
@@ -51,9 +51,9 @@ class _AjouterVetementState extends State<AjouterVetement> {
       source: ImageSource.gallery,
       maxWidth: 800,
       maxHeight: 800,
-      imageQuality: 85
+      imageQuality: 85,
     );
-    
+
     if (image != null) {
       setState(() {
         _imageFile = File(image.path);
@@ -65,7 +65,7 @@ class _AjouterVetementState extends State<AjouterVetement> {
 
   Future<String> _imageToBase64() async {
     if (_imageFile == null) return '';
-    
+
     try {
       List<int> imageBytes = await _imageFile!.readAsBytes();
       return base64Encode(imageBytes);
@@ -134,7 +134,7 @@ class _AjouterVetementState extends State<AjouterVetement> {
 
     try {
       final imageBase64 = await _imageToBase64();
-      
+
       final clothing = Clothing(
         id: DateTime.now().toString(),
         title: _titleController.text,
@@ -164,20 +164,14 @@ class _AjouterVetementState extends State<AjouterVetement> {
   }
 
   @override
-  void dispose() {
-    _interpreter?.close();
-    _titleController.dispose();
-    _sizeController.dispose();
-    _brandController.dispose();
-    _priceController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFEFDCCC),
       appBar: AppBar(
-        title: const Text('Ajouter un vêtement'),
+        title: const Text('Ajouter un vétement', style: TextStyle(color: Color(0xFF8B4513))),
+        backgroundColor: const Color(0xFFEFDCCC),
+        iconTheme: const IconThemeData(color: Color(0xFF8B4513)),
+        elevation: 0,
       ),
       body: Form(
         key: _formKey,
@@ -194,69 +188,70 @@ class _AjouterVetementState extends State<AjouterVetement> {
                 ),
                 child: _imageFile != null
                     ? Image.file(_imageFile!, fit: BoxFit.cover)
-                    : const Icon(Icons.add_photo_alternate, size: 50),
+                    : const Icon(Icons.add_photo_alternate, size: 50, color: Color(0xFF8B4513)),
               ),
             ),
             const SizedBox(height: 8),
-            
-            // Classification Result
             Text(
               _classificationResult,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF8B4513)),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16),
-            
-            TextFormField(
-              controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Titre'),
-              validator: (value) => value?.isEmpty ?? true ? 'Champ requis' : null,
-            ),
-            
-            // Category (showing classification result)
-            TextFormField(
-              readOnly: true,
-              decoration: const InputDecoration(labelText: 'Catégorie (Classifiée)'),
-              controller: TextEditingController(text: _category ?? ''),
-            ),
-            
-            TextFormField(
-              controller: _sizeController,
-              decoration: const InputDecoration(labelText: 'Taille'),
-              validator: (value) => value?.isEmpty ?? true ? 'Champ requis' : null,
-            ),
-            
-            TextFormField(
-              controller: _brandController,
-              decoration: const InputDecoration(labelText: 'Marque'),
-              validator: (value) => value?.isEmpty ?? true ? 'Champ requis' : null,
-            ),
-            
-            TextFormField(
-              controller: _priceController,
-              decoration: const InputDecoration(
-                labelText: 'Prix',
-                suffixText: '€',
-              ),
-              keyboardType: TextInputType.number,
-              validator: (value) {
-                if (value?.isEmpty ?? true) return 'Champ requis';
-                if (double.tryParse(value!) == null) return 'Prix invalide';
-                return null;
-              },
-            ),
-            
+            _buildTextFormField(_titleController, "Titre"),
+            _buildTextFormField(TextEditingController(text: _category ?? ''), "Catégorie (Classifiée)", readOnly: true),
+            _buildTextFormField(_sizeController, "Taille"),
+            _buildTextFormField(_brandController, "Marque"),
+          TextFormField(
+  controller: _priceController,
+  decoration: const InputDecoration(
+    labelText: 'Prix', // Texte de l'étiquette
+    labelStyle: TextStyle( // Style personnalisé pour l'étiquette
+      color: Color(0xFF8B4513), 
+     // fontWeight: FontWeight.bold,
+    ),
+    suffixText: '€', // Texte suffixe
+    suffixStyle: TextStyle(
+      color: Color(0xFF8B4513), // Style personnalisé pour le suffixe
+     fontWeight: FontWeight.bold,
+    ),
+  ),
+  keyboardType: TextInputType.number,
+  validator: (value) {
+    if (value?.isEmpty ?? true) return 'Champ requis';
+    if (double.tryParse(value!) == null) return 'Prix invalide';
+    return null;
+  },
+),
+
             const SizedBox(height: 20),
-            
-            ElevatedButton(
-              onPressed: _isLoading ? null : _saveClothing,
-              child: _isLoading
-                  ? const CircularProgressIndicator()
-                  : const Text('Valider'),
-            ),
+           ElevatedButton(
+  onPressed: _isLoading ? null : _saveClothing,
+  style: ElevatedButton.styleFrom(
+    backgroundColor: const Color(0xFF8B4513), // Utilisation de backgroundColor au lieu de primary
+  ),
+  child: _isLoading
+      ? const CircularProgressIndicator()
+      : const Text('Valider', style: TextStyle(color: Colors.white)),
+),
+
           ],
         ),
       ),
+    );
+  }
+
+  TextFormField _buildTextFormField(TextEditingController controller, String labelText,
+      {bool readOnly = false, TextInputType keyboardType = TextInputType.text}) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: labelText,
+        labelStyle: const TextStyle(color: Color(0xFF8B4513)),
+      ),
+      readOnly: readOnly,
+      keyboardType: keyboardType,
+      validator: (value) => value?.isEmpty ?? true ? 'Champ requis' : null,
     );
   }
 }

@@ -134,7 +134,7 @@ class Panier extends StatelessWidget {
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            '€${clothing.price.toStringAsFixed(2)}',
+                                            '${clothing.price.toStringAsFixed(2)} €',
                                             style: const TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
@@ -169,7 +169,7 @@ class Panier extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    'Total: €${total.toStringAsFixed(2)}',
+                    'Total: ${total.toStringAsFixed(2)} €',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

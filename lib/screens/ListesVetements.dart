@@ -80,7 +80,7 @@ class ListesVetements extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 4),
                                   Text(
-                                    '€${clothing.price.toStringAsFixed(2)}',
+                                    '${clothing.price.toStringAsFixed(2)}€',
                                     style: TextStyle(
                                       color: Colors.brown,
                                       fontWeight: FontWeight.bold,
@@ -94,6 +94,7 @@ class ListesVetements extends StatelessWidget {
                                  clothing.size,
                                   style: const TextStyle(
                                     color: Colors.brown,
+                                    fontSize: 17,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
