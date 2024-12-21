@@ -108,26 +108,12 @@ Notre application comporte six interfaces principales basées sur les User Stori
 
 ## 👥 Accès Démo
 
-Voici deux utilisateurs test pour accéder à l'application :
+Voici mon compte d'utilisateurs test pour accéder à l'application :
 
-1. **Utilisateur 1**  
-   - Login: `demo_user1`  
+1. **Utilisateur **  
+   - Login: `oumaima@gmail.com`  
    - Password: `123456`
+`
 
-2. **Utilisateur 2**  
-   - Login: `demo_user2`  
-   - Password: `password`
 
----
-
-## 📦 Installation
-
-### Prérequis
-- Flutter SDK installé : [Installation Flutter](https://docs.flutter.dev/get-started/install)
-- Firebase configuré dans le projet.
-
-### Étapes
-1. Clonez le dépôt :
-   ```bash
-   git clone https://github.com/votre-repository.git
 
