@@ -1,6 +1,5 @@
-
 import 'package:clothingapp/models/user.dart';
-import 'package:clothingapp/screens/AddClothingScreen.dart';
+import 'package:clothingapp/screens/AjouterVetement.dart';
 import 'package:clothingapp/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,7 +20,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   );
   bool _isLoading = true;
 
-  // Date formatter
   final DateFormat _dateFormatter = DateFormat('dd/MM/yyyy');
 
   String formatBirthday(DateTime? date) {
@@ -44,7 +42,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       if (userDoc.exists) {
         final data = userDoc.data()!;
-        // Convert Timestamp to DateTime
         DateTime? birthDate;
         if (data['birthday'] != null) {
           if (data['birthday'] is Timestamp) {
@@ -114,72 +111,144 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void _navigateToAddClothing() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const AddClothingScreen()),
+      MaterialPageRoute(builder: (context) => const AjouterVetement()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    const inputBorder = OutlineInputBorder(
+      borderSide: BorderSide(color: Color(0xFF8B4513), width: 2),
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+    );
+
     return Scaffold(
+      backgroundColor: const Color(0xFFEFDCCC), // Fond beige pour toute la page
       appBar: AppBar(
-        title: const Text('Profile'),
+        backgroundColor: const Color(0xFFEFDCCC),
+        elevation: 0,
+        
         actions: [
           IconButton(
-            icon: const Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.exit_to_app, color: Color(0xFF8B4513)),
             onPressed: _logout,
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _navigateToAddClothing,
-        child: const Icon(Icons.add),
-        tooltip: 'Ajouter un vêtement',
+        backgroundColor: const Color(0xFF8B4513),
+        child: const Icon(Icons.add, color: Colors.white),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : Form(
               key: _formKey,
-              child: ListView(
-                padding: const EdgeInsets.all(16.0),
-                children: [
-                  TextFormField(
-                    initialValue: user.login,
-                    readOnly: true,
-                    decoration: const InputDecoration(labelText: 'Email'),
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                     
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: user.login,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          labelStyle:
+                              const TextStyle(color: Color(0xFF8B4513)),
+                          border: inputBorder,
+                          enabledBorder: inputBorder,
+                          focusedBorder: inputBorder,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: user.password,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          labelStyle:
+                              const TextStyle(color: Color(0xFF8B4513)),
+                          border: inputBorder,
+                          enabledBorder: inputBorder,
+                          focusedBorder: inputBorder,
+                        ),
+                        onChanged: (value) => user.password = value,
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: formatBirthday(user.birthday),
+                        decoration: InputDecoration(
+                          labelText: 'Birthday',
+                          labelStyle:
+                              const TextStyle(color: Color(0xFF8B4513)),
+                          border: inputBorder,
+                          enabledBorder: inputBorder,
+                          focusedBorder: inputBorder,
+                        ),
+                        onChanged: (value) => user.birthday =
+                            DateFormat('dd/MM/yyyy').parse(value),
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: user.address,
+                        decoration: InputDecoration(
+                          labelText: 'Address',
+                          labelStyle:
+                              const TextStyle(color: Color(0xFF8B4513)),
+                          border: inputBorder,
+                          enabledBorder: inputBorder,
+                          focusedBorder: inputBorder,
+                        ),
+                        onChanged: (value) => user.address = value,
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: user.postalCode,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: 'Postal Code',
+                          labelStyle:
+                              const TextStyle(color: Color(0xFF8B4513)),
+                          border: inputBorder,
+                          enabledBorder: inputBorder,
+                          focusedBorder: inputBorder,
+                        ),
+                        onChanged: (value) => user.postalCode = value,
+                      ),
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        initialValue: user.city,
+                        decoration: InputDecoration(
+                          labelText: 'City',
+                          labelStyle:
+                              const TextStyle(color: Color(0xFF8B4513)),
+                          border: inputBorder,
+                          enabledBorder: inputBorder,
+                          focusedBorder: inputBorder,
+                        ),
+                        onChanged: (value) => user.city = value,
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: _saveProfile,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xFF8B4513),
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 12, horizontal: 20),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                        child: const Text('Valider'),
+                      ),
+                    ],
                   ),
-                  TextFormField(
-                    initialValue: user.password,
-                    obscureText: true,
-                    decoration: const InputDecoration(labelText: 'Password'),
-                    onChanged: (value) => user.password = value,
-                  ),
-                  TextFormField(
-                    initialValue: formatBirthday(user.birthday),
-                    decoration: const InputDecoration(labelText: 'Birthday'),
-                    onChanged: (value) => user.birthday = DateFormat('dd/MM/yyyy').parse(value),
-                  ),
-                  TextFormField(
-                    initialValue: user.address,
-                    decoration: const InputDecoration(labelText: 'Address'),
-                    onChanged: (value) => user.address = value,
-                  ),
-                  TextFormField(
-                    initialValue: user.postalCode,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: 'Postal Code'),
-                    onChanged: (value) => user.postalCode = value,
-                  ),
-                  TextFormField(
-                    initialValue: user.city,
-                    decoration: const InputDecoration(labelText: 'City'),
-                    onChanged: (value) => user.city = value,
-                  ),
-                  const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: _saveProfile, 
-                    child: const Text('Valider'),
-                  ),
-                ],
+                ),
               ),
             ),
     );

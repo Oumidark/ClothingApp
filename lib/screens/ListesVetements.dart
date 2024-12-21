@@ -2,17 +2,22 @@ import 'dart:convert';
 
 import 'package:clothingapp/base64_image.dart';
 import 'package:clothingapp/models/clothing.dart';
-import 'package:clothingapp/screens/clothing_detail_screen.dart';
+import 'package:clothingapp/screens/DetailsVetement.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class ClothingListScreen extends StatelessWidget {
-  const ClothingListScreen({super.key});
+class ListesVetements extends StatelessWidget {
+  const ListesVetements({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: const Color(0xFFEFDCCC), // Appliquer la couleur ici
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFEFDCCC), // Fond de l'AppBar
+        elevation: 0, // Enlever l'ombre de l'AppBar
+      
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('clothes').snapshots(),
         builder: (context, snapshot) {
@@ -40,7 +45,7 @@ class ClothingListScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          ClothingDetailScreen(clothing: clothing),
+                          DetailsVetement(clothing: clothing),
                     ),
                   ),
                   child: Column(
@@ -77,7 +82,7 @@ class ClothingListScreen extends StatelessWidget {
                                   Text(
                                     '€${clothing.price.toStringAsFixed(2)}',
                                     style: TextStyle(
-                                      color: Theme.of(context).primaryColor,
+                                      color: Colors.brown,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -86,9 +91,9 @@ class ClothingListScreen extends StatelessWidget {
                             
 
                               Text(
-                                clothing.size,
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
+                                 clothing.size,
+                                  style: const TextStyle(
+                                    color: Colors.brown,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

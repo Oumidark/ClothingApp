@@ -8,14 +8,14 @@ import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
 import '../models/clothing.dart';
 
-class AddClothingScreen extends StatefulWidget {
-  const AddClothingScreen({super.key});
+class AjouterVetement extends StatefulWidget {
+  const AjouterVetement({super.key});
 
   @override
-  _AddClothingScreenState createState() => _AddClothingScreenState();
+  _AjouterVetementState createState() => _AjouterVetementState();
 }
 
-class _AddClothingScreenState extends State<AddClothingScreen> {
+class _AjouterVetementState extends State<AjouterVetement> {
   final _formKey = GlobalKey<FormState>();
   File? _imageFile;
   String? _category;

@@ -1,6 +1,7 @@
 
-import 'package:clothingapp/screens/cart_screen.dart';
-import 'package:clothingapp/screens/clothing_list_screen.dart';
+import 'package:clothingapp/screens/ListesVetements.dart';
+import 'package:clothingapp/screens/Panier.dart';
+
 import 'package:clothingapp/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,19 +15,26 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   final _pages = [
-    const ClothingListScreen(),
-    const CartScreen(),
+    const ListesVetements(),
+    const Panier(),
     const ProfileScreen(),
   ];
 
  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex],
+     // Couleur de fond pour toute la page
+      backgroundColor: const Color(0xFFEFDCCC),
+      
+      body: Container(
+        color: const Color(0xFFEFDCCC), // S'assure que le fond est uniforme
+        child: _pages[_currentIndex],
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
+          color: const Color(0xFFEFDCCC),
           border: Border(
-            top: BorderSide(color: Colors.black, width: 1), // Ligne supérieure
+            top: BorderSide(color: Colors.brown, width: 1), // Ligne supérieure
           ),
         ),
         child: Row(
@@ -69,11 +77,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: isSelected ? Colors.red : Colors.grey),
+            Icon(icon, color: isSelected ? Colors.brown : Colors.white),
             Text(
               label,
               style: TextStyle(
-                color: isSelected ? Colors.red : Colors.grey,
+                color: isSelected ? Colors.brown : Colors.white,
               ),
             ),
           ],
@@ -85,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _buildSeparator() {
     return Container(
       width: 2,
-      color: Colors.black,
+      color: Colors.brown,
       height: 70, // Ajustez la hauteur si nécessaire
     );
   }

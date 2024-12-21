@@ -5,10 +5,10 @@ import 'package:clothingapp/models/clothing.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class ClothingDetailScreen extends StatelessWidget {
+class DetailsVetement extends StatelessWidget {
   final Clothing clothing;
 
-  const ClothingDetailScreen({super.key, required this.clothing});
+  const DetailsVetement({super.key, required this.clothing});
 
   Future<void> _addToCart(BuildContext context) async {
     try {
