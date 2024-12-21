@@ -168,7 +168,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: const TextStyle(color: Color(0xFF8B4513)),
                     decoration: const InputDecoration(
                       labelText: 'login',
-                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      labelStyle: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,fontSize: 21),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -188,7 +188,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: const TextStyle(color: Color(0xFF8B4513)),
                     decoration: const InputDecoration(
                       labelText: 'Password',
-                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      labelStyle: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,fontSize: 21),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -208,7 +208,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: const TextStyle(color: Color(0xFF8B4513)),
                     decoration: const InputDecoration(
                       labelText: 'Anniversaire',
-                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      labelStyle: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,fontSize: 21),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -229,7 +229,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: const TextStyle(color: Color(0xFF8B4513)),
                     decoration: const InputDecoration(
                       labelText: 'Address',
-                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      labelStyle: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,fontSize: 21),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -250,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: const TextStyle(color: Color(0xFF8B4513)),
                     decoration: const InputDecoration(
                       labelText: 'Code postal',
-                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      labelStyle: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,fontSize: 21),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
@@ -270,7 +270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     style: const TextStyle(color: Color(0xFF8B4513)),
                     decoration: const InputDecoration(
                       labelText: 'Ville',
-                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      labelStyle: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,fontSize: 21),
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       focusedBorder: InputBorder.none,
