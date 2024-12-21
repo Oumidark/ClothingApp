@@ -114,7 +114,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       MaterialPageRoute(builder: (context) => const AjouterVetement()),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     const inputBorder = OutlineInputBorder(
@@ -122,141 +121,190 @@ class _ProfileScreenState extends State<ProfileScreen> {
       borderRadius: BorderRadius.all(Radius.circular(8)),
     );
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFEFDCCC), // Fond beige pour toute la page
-      appBar: AppBar(
-        backgroundColor: const Color(0xFFEFDCCC),
-        elevation: 0,
-          title: const Text(
-          'Profile',
-          style: TextStyle(color: Color(0xFF8B4513)),
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/background.jpg'),
+          fit: BoxFit.cover,
         ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.exit_to_app, color: Color(0xFF8B4513)),
-            onPressed: _logout,
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          title: const Text(
+            'Profile',
+            style: TextStyle(color: Color(0xFF8B4513)),
           ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _navigateToAddClothing,
-        backgroundColor: const Color(0xFF8B4513),
-        child: const Icon(Icons.add, color: Colors.white),
-      ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                     
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        initialValue: user.login,
-                        readOnly: true,
-                        decoration: InputDecoration(
-                          labelText: 'login',
-                          labelStyle:
-                              const TextStyle(color: Color(0xFF8B4513)),
-                          border: inputBorder,
-                          enabledBorder: inputBorder,
-                          focusedBorder: inputBorder,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        initialValue: user.password,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          labelStyle:
-                              const TextStyle(color: Color(0xFF8B4513)),
-                          border: inputBorder,
-                          enabledBorder: inputBorder,
-                          focusedBorder: inputBorder,
-                        ),
-                        onChanged: (value) => user.password = value,
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        initialValue: formatBirthday(user.birthday),
-                        decoration: InputDecoration(
-                          labelText: 'Anniversaire',
-                          labelStyle:
-                              const TextStyle(color: Color(0xFF8B4513)),
-                          border: inputBorder,
-                          enabledBorder: inputBorder,
-                          focusedBorder: inputBorder,
-                        ),
-                        onChanged: (value) => user.birthday =
-                            DateFormat('dd/MM/yyyy').parse(value),
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        initialValue: user.address,
-                        decoration: InputDecoration(
-                          labelText: 'Address',
-                          labelStyle:
-                              const TextStyle(color: Color(0xFF8B4513)),
-                          border: inputBorder,
-                          enabledBorder: inputBorder,
-                          focusedBorder: inputBorder,
-                        ),
-                        onChanged: (value) => user.address = value,
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        initialValue: user.postalCode,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          labelText: 'Code postal',
-                          labelStyle:
-                              const TextStyle(color: Color(0xFF8B4513)),
-                          border: inputBorder,
-                          enabledBorder: inputBorder,
-                          focusedBorder: inputBorder,
-                        ),
-                        onChanged: (value) => user.postalCode = value,
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        initialValue: user.city,
-                        decoration: InputDecoration(
-                          labelText: 'Ville',
-                          labelStyle:
-                              const TextStyle(color: Color(0xFF8B4513)),
-                          border: inputBorder,
-                          enabledBorder: inputBorder,
-                          focusedBorder: inputBorder,
-                        ),
-                        onChanged: (value) => user.city = value,
-                      ),
-                      const SizedBox(height: 20),
-                       Center(
-                        child: ElevatedButton(
-                        onPressed: _saveProfile,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF8B4513),
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 20),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                        ),
-                        child: const Text('Valider'),
-                      ),
-                       ),
-                    ],
+          centerTitle: true,
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.exit_to_app, color: Color(0xFF8B4513)),
+              onPressed: _logout,
+            ),
+          ],
+        ),
+        body: _isLoading
+    ? const Center(child: CircularProgressIndicator())
+    : Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.brown.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: TextFormField(
+                    initialValue: user.login,
+                    readOnly: true,
+                    style: const TextStyle(color: Color(0xFF8B4513)),
+                    decoration: const InputDecoration(
+                      labelText: 'login',
+                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
                   ),
                 ),
-              ),
+                const SizedBox(height: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.brown.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: TextFormField(
+                    initialValue: user.password,
+                    obscureText: true,
+                    style: const TextStyle(color: Color(0xFF8B4513)),
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
+                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    onChanged: (value) => user.password = value,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.brown.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: TextFormField(
+                    initialValue: formatBirthday(user.birthday),
+                    style: const TextStyle(color: Color(0xFF8B4513)),
+                    decoration: const InputDecoration(
+                      labelText: 'Anniversaire',
+                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    onChanged: (value) => user.birthday = 
+                        DateFormat('dd/MM/yyyy').parse(value),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.brown.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: TextFormField(
+                    initialValue: user.address,
+                    style: const TextStyle(color: Color(0xFF8B4513)),
+                    decoration: const InputDecoration(
+                      labelText: 'Address',
+                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    onChanged: (value) => user.address = value,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.brown.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: TextFormField(
+                    initialValue: user.postalCode,
+                    keyboardType: TextInputType.number,
+                    style: const TextStyle(color: Color(0xFF8B4513)),
+                    decoration: const InputDecoration(
+                      labelText: 'Code postal',
+                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    onChanged: (value) => user.postalCode = value,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.brown.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: TextFormField(
+                    initialValue: user.city,
+                    style: const TextStyle(color: Color(0xFF8B4513)),
+                    decoration: const InputDecoration(
+                      labelText: 'Ville',
+                      labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                      border: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                    ),
+                    onChanged: (value) => user.city = value,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: _saveProfile,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8B4513),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 20),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    child: const Text('Valider'),
+                  ),
+                ),
+              ],
             ),
+          ),
+        ),
+      ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: _navigateToAddClothing,
+          backgroundColor: const Color(0xFF8B4513),
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
+      ),
     );
   }
 }

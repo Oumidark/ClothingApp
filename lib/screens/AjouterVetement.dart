@@ -161,81 +161,97 @@ class _AjouterVetementState extends State<AjouterVetement> {
     } finally {
       setState(() => _isLoading = false);
     }
-  }
-
-  @override
+  } @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFFEFDCCC),
-      appBar: AppBar(
-        title: const Text('Ajouter un vétement', style: TextStyle(color: Color(0xFF8B4513))),
-        backgroundColor: const Color(0xFFEFDCCC),
-        iconTheme: const IconThemeData(color: Color(0xFF8B4513)),
-        elevation: 0,
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/background.jpg'),
+          fit: BoxFit.cover,
+        ),
       ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(16.0),
-          children: [
-            GestureDetector(
-              onTap: _pickImage,
-              child: Container(
-                height: 200,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('Ajouter un vétement', 
+            style: TextStyle(color: Color(0xFF8B4513)),
+          ),
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          iconTheme: const IconThemeData(color: Color(0xFF8B4513)),
+        ),
+        body: Form(
+          key: _formKey,
+          child: ListView(
+            padding: const EdgeInsets.all(16.0),
+            children: [
+              GestureDetector(
+                onTap: _pickImage,
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                    //border: Border.all(color: Colors.grey),
+                     color: Colors.brown.withOpacity(0.3),
+                    border: Border.all(color: Colors.brown.withOpacity(0.3)),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: _imageFile != null
+                      ? Image.file(_imageFile!, fit: BoxFit.cover)
+                      : const Icon(Icons.add_photo_alternate, size: 50, color: Color(0xFF8B4513)),
                 ),
-                child: _imageFile != null
-                    ? Image.file(_imageFile!, fit: BoxFit.cover)
-                    : const Icon(Icons.add_photo_alternate, size: 50, color: Color(0xFF8B4513)),
               ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              _classificationResult,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Color(0xFF8B4513)),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 16),
-            _buildTextFormField(_titleController, "Titre"),
-            _buildTextFormField(TextEditingController(text: _category ?? ''), "Catégorie (Classifiée)", readOnly: true),
-            _buildTextFormField(_sizeController, "Taille"),
-            _buildTextFormField(_brandController, "Marque"),
-          TextFormField(
-  controller: _priceController,
-  decoration: const InputDecoration(
-    labelText: 'Prix', // Texte de l'étiquette
-    labelStyle: TextStyle( // Style personnalisé pour l'étiquette
-      color: Color(0xFF8B4513), 
-     // fontWeight: FontWeight.bold,
-    ),
-    suffixText: '€', // Texte suffixe
-    suffixStyle: TextStyle(
-      color: Color(0xFF8B4513), // Style personnalisé pour le suffixe
-     fontWeight: FontWeight.bold,
-    ),
-  ),
-  keyboardType: TextInputType.number,
-  validator: (value) {
-    if (value?.isEmpty ?? true) return 'Champ requis';
-    if (double.tryParse(value!) == null) return 'Prix invalide';
-    return null;
-  },
-),
-
-            const SizedBox(height: 20),
-           ElevatedButton(
-  onPressed: _isLoading ? null : _saveClothing,
-  style: ElevatedButton.styleFrom(
-    backgroundColor: const Color(0xFF8B4513), // Utilisation de backgroundColor au lieu de primary
-  ),
-  child: _isLoading
-      ? const CircularProgressIndicator()
-      : const Text('Valider', style: TextStyle(color: Colors.white)),
-),
-
-          ],
+              const SizedBox(height: 8),
+              Text(
+                _classificationResult,
+                style: const TextStyle(
+                  fontSize: 16, 
+                  fontWeight: FontWeight.bold, 
+                  color: Color(0xFF8B4513)
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              _buildTextFormField(_titleController, "Titre"),
+              _buildTextFormField(TextEditingController(text: _category ?? ''), "Catégorie (Classifiée)", readOnly: true),
+              _buildTextFormField(_sizeController, "Taille"),
+              _buildTextFormField(_brandController, "Marque"),
+              TextFormField(
+                controller: _priceController,
+                style: const TextStyle(color: Color(0xFF8B4513)),
+                decoration: const InputDecoration(
+                  labelText: 'Prix',
+                  labelStyle: TextStyle(color: Color(0xFF8B4513)),
+                  suffixText: '€',
+                  suffixStyle: TextStyle(
+                    color: Color(0xFF8B4513),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF8B4513)),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFF8B4513)),
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) return 'Champ requis';
+                  if (double.tryParse(value!) == null) return 'Prix invalide';
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: _isLoading ? null : _saveClothing,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF8B4513),
+                ),
+                child: _isLoading
+                    ? const CircularProgressIndicator()
+                    : const Text('Valider', style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -245,9 +261,16 @@ class _AjouterVetementState extends State<AjouterVetement> {
       {bool readOnly = false, TextInputType keyboardType = TextInputType.text}) {
     return TextFormField(
       controller: controller,
+      style: const TextStyle(color: Color(0xFF8B4513)),
       decoration: InputDecoration(
         labelText: labelText,
         labelStyle: const TextStyle(color: Color(0xFF8B4513)),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF8B4513)),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Color(0xFF8B4513)),
+        ),
       ),
       readOnly: readOnly,
       keyboardType: keyboardType,

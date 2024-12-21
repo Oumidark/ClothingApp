@@ -1,7 +1,5 @@
-
 import 'package:clothingapp/screens/ListesVetements.dart';
 import 'package:clothingapp/screens/Panier.dart';
-
 import 'package:clothingapp/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,48 +18,65 @@ class _HomeScreenState extends State<HomeScreen> {
     const ProfileScreen(),
   ];
 
- @override
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     // Couleur de fond pour toute la page
-      backgroundColor: const Color(0xFFEFDCCC),
-      
-      body: Container(
-        color: const Color(0xFFEFDCCC), // S'assure que le fond est uniforme
-        child: _pages[_currentIndex],
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: const Color(0xFFEFDCCC),
-          border: Border(
-            top: BorderSide(color: Colors.brown, width: 1), // Ligne supérieure
+    return Stack(
+      children: [
+        // Image de fond
+        Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/background.jpg'),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-        child: Row(
-          children: [
-            _buildNavItem(
-              icon: Icons.attach_money,
-              label: 'Acheter',
-              isSelected: _currentIndex == 0,
-              onTap: () => setState(() => _currentIndex = 0),
-            ),
-            _buildSeparator(),
-            _buildNavItem(
-              icon: Icons.shopping_cart,
-              label: 'Panier',
-              isSelected: _currentIndex == 1,
-              onTap: () => setState(() => _currentIndex = 1),
-            ),
-            _buildSeparator(),
-            _buildNavItem(
-              icon: Icons.person,
-              label: 'Profil',
-              isSelected: _currentIndex == 2,
-              onTap: () => setState(() => _currentIndex = 2),
-            ),
-          ],
+        // Contenu principal
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          // Wrap le body dans un Container transparent
+          body: Container(
+            color: Colors.transparent,
+            child: _pages[_currentIndex],
+          ),
+          bottomNavigationBar: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                height: 1,
+                color: Colors.brown,
+              ),
+              Container(
+                color: const Color(0xFFEFDCCC).withOpacity(0.7),
+                child: Row(
+                  children: [
+                    _buildNavItem(
+                      icon: Icons.attach_money,
+                      label: 'Acheter',
+                      isSelected: _currentIndex == 0,
+                      onTap: () => setState(() => _currentIndex = 0),
+                    ),
+                    _buildSeparator(),
+                    _buildNavItem(
+                      icon: Icons.shopping_cart,
+                      label: 'Panier',
+                      isSelected: _currentIndex == 1,
+                      onTap: () => setState(() => _currentIndex = 1),
+                    ),
+                    _buildSeparator(),
+                    _buildNavItem(
+                      icon: Icons.person,
+                      label: 'Profil',
+                      isSelected: _currentIndex == 2,
+                      onTap: () => setState(() => _currentIndex = 2),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 
@@ -74,17 +89,26 @@ class _HomeScreenState extends State<HomeScreen> {
     return Expanded(
       child: GestureDetector(
         onTap: onTap,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: isSelected ? Colors.brown : Colors.white),
-            Text(
-              label,
-              style: TextStyle(
-                color: isSelected ? Colors.brown : Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                icon,
+                color: isSelected ? const Color.fromARGB(255, 217, 98, 13) : Colors.brown.withOpacity(0.7),
+                size: 24,
               ),
-            ),
-          ],
+              const SizedBox(height: 4),
+              Text(
+                label,
+                style: TextStyle(
+                  color: isSelected ? Colors.brown : Colors.brown.withOpacity(0.7),
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -92,9 +116,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSeparator() {
     return Container(
-      width: 2,
-      color: Colors.brown,
-      height: 70, // Ajustez la hauteur si nécessaire
+      width: 1,
+      height: 40,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      color: Colors.brown.withOpacity(0.7),
     );
   }
 }

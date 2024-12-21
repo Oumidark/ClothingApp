@@ -38,7 +38,8 @@ class DetailsVetement extends StatelessWidget {
        backgroundColor: Colors.white,
         iconTheme: const IconThemeData(color: Color(0xFF8B4513)),
       ),
-      body: SingleChildScrollView(
+      body: 
+      SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
