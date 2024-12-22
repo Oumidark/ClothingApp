@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 label,
                 style: TextStyle(
-                  color: isSelected ? Colors.brown : Colors.brown.withOpacity(0.7),
+                  color: isSelected ? const Color.fromARGB(255, 217, 98, 13) : Colors.brown.withOpacity(0.7),
                   fontSize: 12,
                 ),
               ),
