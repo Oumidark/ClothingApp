@@ -135,7 +135,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           elevation: 0,
           title: const Text(
             'Profile',
-            style: TextStyle(color: Color(0xFF8B4513)),
+            style: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,),
           ),
           centerTitle: true,
           actions: [
