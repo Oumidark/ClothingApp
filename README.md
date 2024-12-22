@@ -113,7 +113,32 @@ Voici mon compte d'utilisateurs test pour accéder à l'application :
 1. **Utilisateur **  
    - Login: `oumaima@gmail.com`  
    - Password: `123456`
+
+---
 `
+## 🔧 Installation
+
+Pour cloner ce projet sur votre machine locale, suivez les étapes ci-dessous :
+
+ **Clonez le dépôt** en utilisant la commande suivante dans votre terminal :
+   ```bash
+   git clone https://github.com/Oumidark/ClothingApp.git
+
+Par défaut, Git clone uniquement la branche par défaut (la branche main pour mon repos ). Pour accéder aux autres branches, vous devez les récupérer :
+ **git branch -r**                       Pour lister toutes les branches disponibles (dans ce repos on a la branche main et la branche version-amélioré) Pour basculer a une branche spécifique faite soit :
+ **git checkout main**                   Pour la branche main
+ **git checkout version_amélioré**      Pour la branche version_améliorée
+
+Sinon pour cloner une branche spécifique du projet directement, utilisez la commande suivante :
+
+Pour cloner la branche main (version de base) :
+       git clone -b main --single-branch https://github.com/Oumidark/ClothingApp.git
+
+Pour cloner la branche version_amélioré (avec les améliorations) :
+       git clone -b version_amélioré --single-branch https://github.com/Oumidark/ClothingApp.git
+
+
+
 
 
 
