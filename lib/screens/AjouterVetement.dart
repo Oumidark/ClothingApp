@@ -174,7 +174,7 @@ class _AjouterVetementState extends State<AjouterVetement> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: const Text('Ajouter un vétement', 
-            style: TextStyle(color: Color(0xFF8B4513)),
+            style: TextStyle(color: Color(0xFF8B4513),fontWeight: FontWeight.bold,),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
