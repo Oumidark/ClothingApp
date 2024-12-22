@@ -1,6 +1,6 @@
-# 🛍️ Mon Application de Vêtements "CoutureLine"
+# 🛍️ Mon Application de Vêtements "clothingapp"
 
-Bienvenue dans mon application **CoutureLine**, une application Flutter développée dans le cadre de mon cours de Flutter. Cette application permet aux utilisateurs de parcourir une sélection de vêtements, d'ajouter des articles à leur panier et de gérer leurs profils.
+Bienvenue dans mon application **clothingapp**, une application Flutter développée dans le cadre de mon cours de Flutter de mon M2 en IA appliqué . Cette application permet aux utilisateurs de parcourir une sélection de vêtements, d'ajouter des articles à leur panier et de gérer leurs profils.
 
 ---
 

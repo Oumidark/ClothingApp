@@ -64,7 +64,7 @@ Widget build(BuildContext context) {
       Center(       
          child :ShaderMask(
          shaderCallback: (bounds) => const LinearGradient(
-         colors: [Color.fromARGB(255, 94, 42, 5), Color(0xFFDEB887)], // Dégradé marron
+         colors: [Color.fromARGB(255, 94, 42, 5), Color(0xFFDEB887)], 
          begin: Alignment.topLeft,
          end: Alignment.bottomRight,
          ).createShader(bounds),
@@ -74,7 +74,7 @@ Widget build(BuildContext context) {
             blurRadius: 5, // Rayon de flou
             color: Colors.brown, // Couleur de l'ombre
           ),
-        ], // Nécessaire pour appliquer le Shader
+        ], 
             ),
           ),
        ),
