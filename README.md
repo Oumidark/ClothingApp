@@ -9,6 +9,23 @@ Bienvenue dans mon application **CoutureLine**, une application Flutter dévelop
 L'objectif principal de cette application est de fournir une **MVP** (Minimum Viable Product) qui offre les fonctionnalités essentielles pour une expérience utilisateur fluide. L'application adopte les méthodologies **Agiles** avec des **User Stories** détaillant les besoins utilisateurs.
 
 ---
+
+
+### Versions Disponibles
+
+Ce dépôt contient deux versions de l'application :  
+
+1. **Version Standard** (branche `main`)  
+   - Respecte strictement les exigences des **User Stories**.
+   - Implémente uniquement les fonctionnalités demandées.  
+
+2. **Version Améliorée** (branche `version_améliorée`)  
+   - Inclut des ajouts pour améliorer l'expérience utilisateur, notamment :  
+     - Une option de **filtrage** par catégorie, marque, prix et nom sur la liste des vêtements.  
+     - Des **titres** ajoutés aux écrans où cela n'était pas explicitement demandé (excepté dans une User Story spécifique).  
+     - Un **texte de bienvenue** sur la page de connexion pour améliorer l'interface utilisateur.  
+
+---
 ## 🧠 Intelligence Artificielle dans l'Application
 
 J'ai développé un modèle d'intelligence artificielle pour classifier les vêtements automatiquement :
